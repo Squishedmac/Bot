@@ -47,14 +47,14 @@ static size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* use
 void main()
 {
     string readBuffer;
-    string MainPageurl = "https://eduserver.nitc.ac.in/login/index.php";
+    string MainPageurl = "MAIN_PAGEURL";
    
-    string MPMC = "https://eduserver.nitc.ac.in/mod/attendance/view.php?id=90700";
-    string EMFTA = "https://eduserver.nitc.ac.in/mod/attendance/view.php?id=89332";
-    string EMFTB = "https://eduserver.nitc.ac.in/course/view.php?id=2364";
-    string CTSB = "https://eduserver.nitc.ac.in/mod/attendance/view.php?id=90511";
-    string MPMClab = "https://eduserver.nitc.ac.in/mod/attendance/view.php?id=91761";
-    string test = "https://eduserver.nitc.ac.in/mod/attendance/view.php?id=97582";
+    string SUBJECT = "SUBBJECT_URL";
+    string SUBJECT = "SUBBJECT_URL";
+    string SUBJECT = "SUBBJECT_URL";
+    string SUBJECT = "SUBBJECT_URL";
+    string SUBJECT= "SUBBJECT_URL";
+   
 
     
     auto curl = curl_easy_init();
@@ -91,25 +91,7 @@ void main()
         c = stringream(readBuffer,check, &pos);
         token = c[pos + 1];
         
-        
-
        
-        /*for (int i=0;i<c.size(); i++)
-        {
-            /// <summary>
-            /// here we find the login token and session key required for the get and  post requests its a sentance so we iterate letter by letter as the size of these kets do not change
-            /// </summary>
-            if (c[i] == check)
-                token = c[i + 1];
-            
-            else if (c[i] == check2)
-                sesskey=c[i+2];
-            
-        }*/
-
-        
-
-        
         string finaltoken,Sesskey,id,ID;
 
 
@@ -123,11 +105,13 @@ void main()
         /// iterate the sentance to obtain the value required
         /// </summary>
 
+        string username,password;
+	   
+	cin>>username;
+	cin>>password;
         
 
-        
-
-        string adds = "logintoken="+finaltoken+"&username=b201071me&password=Jaikrishnan1*";
+        string adds = "logintoken="+finaltoken+"&username="+username+"&password="+password;
         readBuffer = "";
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, adds.c_str());
         curl_easy_perform(curl);
@@ -145,11 +129,7 @@ void main()
         a = stringream(readBuffer,check3,&pos);
         furl = a[pos - 1];
         
-        /*for (int i = 100; i < a.size(); i++)
-        {
-            if (a[i] == check3)
-                furl = a[i - 1];
-        }*/
+     
         cout << furl;
         for (int i = 6; i <furl.size()-8; i++)
         {
@@ -170,13 +150,7 @@ void main()
        
         b = stringream(readBuffer,check4,&pos);
         id = b[pos + 4];
-        
-        /*for (int i = 100; i < b.size(); i++)
-        {
-            if (b[i] == check4)
-                id = b[i + 4];
-        }*/
-
+       
         for (int i = 14; i < id.size() - 1; i++)
         {
             ID = ID + id[i];
